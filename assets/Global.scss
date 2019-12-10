@@ -1,0 +1,141 @@
+html{
+    overflow: hidden;
+}
+.v-btn{
+    letter-spacing: unset !important;
+}
+a{
+    text-decoration: unset;
+}
+.height-fix{
+    height: 100%;
+}
+.page-enter-active, .page-leave-active {
+      transition: all .20s ease-out;
+    }
+.page-enter, .page-leave-active {
+    opacity: 0;
+}
+.g-bg-container{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: url('~assets/bg.png') top/cover no-repeat;
+}
+.g-content-container{
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.74);
+    position: relative;
+    .g-toolbar{
+        height: 64px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        border-bottom: 1px solid rgba(0,0,0,0);
+        transition: 0.2s opacity;
+        &.border{
+            border-bottom: 1px $mainWhite solid;
+        }
+        .g-current-page{
+            font-size: 14px;
+            font-weight: 300;
+            padding-top: 1px;
+        }
+        .g-search{
+            margin-left: 5px;
+            margin-right: 16px;
+        }
+        .g-h-divider{
+            height: 7.5px;
+            background: $mainWhite;
+            width: 1px;
+            margin: 0px 16px;
+            &.btn-left{
+                margin-left: 0;
+            }
+            &.btn-right{
+                margin-right: 0;
+            }
+        }
+        .nuxt-link-active{
+            margin-left: 14px
+        }
+        .v-btn{
+            &.g-collection-btn{
+                margin-left: auto;
+                font-weight: 300;
+                font-size: 14px;
+            }
+            &.g-home-btn{
+                text-transform: unset !important;
+                font-size: 17.5px;
+                font-weight: 300;
+                .weight{
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+    .g-content-core{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        .g-title-container{
+            height: 100%;
+            max-height: 135px;
+            display: flex;
+            padding: 0px 30px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+            .g-big-title{
+                font-size: 43px;
+                font-weight: 300;
+            }
+            .g-view-all-btn{
+                font-weight: 300;
+                height: 45px;
+                background: rgba(0,0,0,0.14);
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px){
+    .g-content-container{
+        .g-toolbar{
+            height: 50px;
+            .g-current-page{
+                font-size: 12px;
+            }
+            .v-btn{
+                &.g-home-btn{
+                    font-size: 14.5px;
+                }
+                &.g-collection-btn{
+                    font-size: 12px;
+                }
+            }
+            // If they're on the 'All' page we have a menu
+            &.border{
+                .nuxt-link-active{
+                    margin-left: 55px
+                }
+            }
+        }
+        .g-content-core{
+            .g-title-container{
+                .g-big-title{
+                    font-size: 25px;
+                }
+            }
+        }
+    }
+}

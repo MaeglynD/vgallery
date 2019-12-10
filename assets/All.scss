@@ -1,0 +1,122 @@
+.g-all-container{
+    height: 100%;
+    .g-gallery-main{
+        width: calc(100% - 324px);
+        height: calc(100% - 64px);
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 50px;
+        .v-responsive{
+            border-radius: 3px;
+            box-shadow: 0px 0px 26.195px 4.805px rgba(0, 0, 0, 0.41);
+            img{
+                height: 100%;
+                width: 100%;
+            }
+        }
+        .v-btn{
+            position: absolute;
+            margin: auto;
+            color: rgba(255, 255, 255, 0.6);
+            &.g-gallery-up{
+                top: 5px;
+            }
+            &.g-gallery-down{
+                bottom: 5px;
+            }
+        }
+    }
+    .g-fixed-mobile-menu{
+        position: fixed;
+        top: 7px;
+        left: 14px;
+        display: none;
+    }
+    ::v-deep .v-overlay{
+        top: 50px;
+        left: 0px;
+        // left: 324px;
+    }
+    ::v-deep .v-navigation-drawer{
+        height: calc(100% - 64px) !important;
+        bottom: 0px !important;
+        top: unset !important;
+        width: 324px !important;
+        background: transparent;
+        .v-navigation-drawer__content{
+            overflow: hidden;
+        }
+        .simplebar-scrollbar{
+            position: absolute;
+            right: 1px;
+            width: 3px;
+            min-height: 10px;
+        }
+        .g-panel{
+            height: 109px;
+            width: 100%;
+            border-bottom: 1px solid $mainWhite;
+            padding: 0px 22.5px;
+            display: flex;
+            align-items: center;
+            @include no-select;
+            will-change: background;
+            cursor: pointer;
+            transition: 0.2s background;
+            &:hover{
+                background: rgba(255, 255, 255, 0.02);
+            }
+            .g-panel-img{
+                // background: $mainWhite;
+                box-shadow: 0px 5px 6.5px 0.02px rgba(0, 0, 0, 0.8);
+                height: 63.5px;
+                width: 63.5px;
+                border-radius: 3px;
+                margin-right: 22.5px;
+                overflow: hidden;
+                img{
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+            .g-panel-text{
+                display: flex;
+                flex-direction: column;
+                .g-panel-text-title{
+                    font-size: 13.5px;
+                    font-weight: 400;
+                    letter-spacing: 0.7px;
+                    color: rgba(255, 255, 255, 0.90);
+                    margin-bottom: 3px;
+                }
+                .g-panel-text-desc{
+                    font-size: 12px;
+                    font-weight: 300;
+                    color: rgba(255, 255, 255, 0.41);
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 184px;
+                }
+            }
+        }
+    }
+} 
+
+@media only screen and (max-width: 1024px){
+    .g-all-container{
+        ::v-deep .v-navigation-drawer{
+            height: calc(100% - 50px) !important;
+        }
+        .g-gallery-main{
+            width: 100%;
+        }
+        .g-fixed-mobile-menu{
+            display: block;
+        }    
+    }
+}
