@@ -7,6 +7,7 @@
           <parallax-container>
             <parallax-element :parallaxStrength="20" type="depth" tag="div" class="g-panel-img">
               <img :src="x.thumbSrc" :alt="x.name">
+              <!-- <img src="../assets/bob-min.png" :alt="x.name">  -->
             </parallax-element>
           </parallax-container>
           <div class="g-panel-text">
@@ -18,11 +19,12 @@
       </simplebar>
     </v-navigation-drawer>
     <div class="g-gallery-main">
-      <v-btn icon class="g-gallery-up"><v-icon>mdi-chevron-up</v-icon></v-btn>
-      <v-btn icon class="g-gallery-down"><v-icon>mdi-chevron-down</v-icon></v-btn>
+      <v-btn icon class="g-gallery-up" :disabled="art.indexOf(activeImg) === 0" @click="changeActiveImg(-1)"><v-icon>mdi-chevron-up</v-icon></v-btn>
+      <v-btn icon class="g-gallery-down" :disabled="art.indexOf(activeImg) === art.length - 1" @click="changeActiveImg(1)"><v-icon>mdi-chevron-down</v-icon></v-btn>
       <v-responsive :aspect-ratio="16/9" max-height="100%" style="background: 'red'">
         <!-- <transition name="component-fade"> -->
           <img :src="activeImg.src" alt="" :key="activeImg.src">
+          <!-- <img src="../assets/bob-compressor.png" alt="" :key="activeImg.src"> -->
         <!-- </transition> -->
       </v-responsive>
     </div>
@@ -61,7 +63,16 @@ export default {
     }
   },
   methods: {
-    e(){}
+    changeActiveImg(amount){
+      // Current index
+      const currentIndex = this.art.indexOf(this.activeImg);
+      // Current positive / negative
+      const currentSign = Math.sign(amount);
+      // If its available, display it
+      if(!(currentIndex === this.art.length - 1 && currentSign == 1) && !(currentIndex === 0 && !currentSign)){
+        this.activeImg = this.art[currentIndex + amount];
+      }
+    }
   },
 }
 </script>

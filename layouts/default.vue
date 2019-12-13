@@ -9,7 +9,7 @@
           <div class="g-h-divider btn-left"></div>
           <div class="g-current-page">{{$nuxt.$route.name}}</div>
         </template>
-        <v-btn text class="g-collection-btn">Collections</v-btn>
+        <nuxt-link to="/Collections" class="v-btn g-collection-btn"><v-btn text class="g-collection-btn">Collections</v-btn></nuxt-link>
         <div class="g-h-divider btn-left btn-right"></div>
         <v-btn icon class="g-search"><v-icon size="17">mdi-magnify</v-icon></v-btn>
       </div>
