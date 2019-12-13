@@ -1,28 +1,30 @@
 <template>
-  <div class="g-collection-simple-container">
-    <client-only>
-      <carousel></carousel>
-    </client-only>
-  </div>
+    <carousel-3d :height="420">
+      <slide :index="i" v-for="(x, i) in collectionPanels" :key="x.name" class="g-collection-panel">
+          <img :src="x.bg">
+          <span class="g-panel-descriptor">{{x.name}}</span>
+      </slide>
+    </carousel-3d>
   
-  <!-- <div class="g-collection-simple-container">
-    <simplebar class="height-fix g-collection-core">
-    <div class="g-collection-panel" v-for="x in collectionPanels" :key="x.name">
-    <!-- <img src="../assets/offline-placeholder.png" alt="">
-    
-    <img :src="x.bg">
-    <span class="g-panel-descriptor">{{x.name}}</span>
-  </div>
-  </simplebar>
-  </div> -->
+    <!-- <div class="g-collection-simple-container">
+        <simplebar class="height-fix g-collection-core">
+        <div class="g-collection-panel" v-for="x in collectionPanels" :key="x.name">
+        <!-- <img src="../assets/offline-placeholder.png" alt="">
+        
+        <img :src="x.bg">
+        <span class="g-panel-descriptor">{{x.name}}</span>
+    </div>
+    </simplebar>
+    </div> -->
 </template>
 
 <script>
+import { Carousel3d, Slide } from 'vue-carousel-3d';
 
 export default {
   components: {
-    // nuxt is retarded
-    carousel: () => import('@/components/carousel.vue')
+    Carousel3d,
+    Slide
   },
   data(){
     return {
