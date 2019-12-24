@@ -3,7 +3,7 @@
     <v-btn icon class="g-fixed-mobile-menu" @click="nav = !nav"><v-icon>mdi-menu</v-icon></v-btn>
     <v-navigation-drawer absolute mobile-break-point="1024" v-model="nav">
       <simplebar class="height-fix">
-        <div class="g-panel" v-ripple v-for="(x, i) in art" :key="i" @click="(activeImg = x), ($nuxt.$route.query.id = x.id)">
+        <div :class="{'g-panel': true, 'g-panel-active': x.id === activeImg.id }" v-ripple v-for="(x, i) in art" :key="i" @click="(activeImg = x), ($nuxt.$route.query.id = x.id)">
           <parallax-container>
             <parallax-element :parallaxStrength="20" type="depth" tag="div" class="g-panel-img">
               <img :src="x.thumbSrc" :alt="x.name">
@@ -24,6 +24,22 @@
       <v-responsive :aspect-ratio="16/9" max-height="100%" style="background: 'red'">
         <!-- <transition name="component-fade"> -->
           <img :src="activeImg.src" alt="" :key="activeImg.src">
+          <!-- Seems like an anti-pattern when positions are just css properties, but the keys in :style arent reactive (i think) -->
+          <div :class="['g-active-img-text', ...activeImg.textPosition]">
+            <input class="g-invis-id" ref="activeImg-id" />
+            <div class="head">
+              {{activeImg.name}}
+              <v-tooltip bottom transition="fade">
+                <template v-slot:activator="{ on }">
+                  <v-btn @click="copyURL()" v-on="on" dark icon><v-icon>mdi-paperclip</v-icon></v-btn>
+                </template>
+               {{ activeCopy === activeImg.id ? 'Copied!' : 'Copy URL'}}
+              </v-tooltip>
+            </div>
+            <div class="desc">{{activeImg.desc.length ? activeImg.desc : 'no description'}}</div>
+            <div class="date"><span>Created: </span> {{activeImg.date}}</div>
+            <div class="tags"><span>Tags: </span>{{activeImg.tags.length ? activeImgs.tags.join(', ') : 'no tags'}}</div>
+          </div>
           <!-- <img src="../assets/bob-compressor.png" alt="" :key="activeImg.src"> -->
         <!-- </transition> -->
       </v-responsive>
@@ -49,7 +65,8 @@ export default {
     return {
       nav: true,
       art: art,
-      activeImg: {}
+      activeImg: {},
+      activeCopy: null
     }
   },
   created(){
@@ -63,6 +80,14 @@ export default {
     }
   },
   methods: {
+    copyURL(){
+      // Copying to clipboard in js is basically still in the fucking stoneage
+      const ref = this.$refs['activeImg-id'];
+      ref.value = `${window.location.toString().split('?')[0]}?id=${this.activeImg.id}`
+      ref.select();
+      document.execCommand('copy');
+      this.activeCopy = this.activeImg.id
+    },
     changeActiveImg(amount){
       // Current index
       const currentIndex = this.art.indexOf(this.activeImg);

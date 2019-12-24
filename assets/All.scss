@@ -18,6 +18,72 @@
                 height: 100%;
                 width: 100%;
             }
+            // Anti-pattern? Yeah probably 
+            .top{top: 20px}
+            .bottom{bottom: 20px}
+            .left{left: 20px}
+            .right{right: 20px}
+            .g-active-img-text{
+                position: absolute;
+                font-weight: 300;
+                padding-right: 10px;
+                .g-invis-id{
+                    opacity: 0;
+                    width: 1px;
+                    height: 1px;
+                    position: fixed;
+                    top: -1px;
+                }
+                div:not(.desc){
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 400px;
+                    text-transform: capitalize;
+                }
+                .head{
+                    font-size: 24px;
+                    color: rgba(0,0,0,1);
+                    .v-btn{
+                        opacity: 0;
+                        transition: 0.2s;
+                        margin-left: 5px;
+                        &:hover{
+                             background: rgba(0,0,0,0.1);
+                        }
+                        .mdi{
+                            font-size: 20px;
+                            transform: rotate(-45deg);
+                            color: rgba(0,0,0,0.87);
+                        }
+                    }
+                }
+                .desc{
+                    color: rgba(0,0,0,0.7);
+                    font-size: 14px;
+                }
+                .date, .tags{
+                    font-size: 13px;
+                    color: rgba(0,0,0,0.7);
+                    span{
+                        font-weight: 400;
+                        color: rgba(0,0,0,0.87);
+                    }
+                }
+                .date{
+                    margin-top: 10px;  
+                }
+
+            }
+            &:hover{
+                .g-active-img-text{
+                    .head{
+                        .v-btn{
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
         }
         .v-btn{
             position: absolute;
@@ -41,6 +107,11 @@
         top: 50px;
         left: 0px;
         // left: 324px;
+        &.v-overlay--active{
+            .v-overlay{
+                opacity: 0.8 !important;
+            }
+        }
     }
     ::v-deep .v-navigation-drawer{
         height: calc(100% - 64px) !important;
@@ -48,6 +119,7 @@
         top: unset !important;
         width: 324px !important;
         background: transparent;
+        backdrop-filter: blur(5px);
         .v-navigation-drawer__content{
             overflow: hidden;
         }
@@ -70,6 +142,13 @@
             transition: 0.2s background;
             &:hover{
                 background: rgba(255, 255, 255, 0.02);
+            }
+            &.g-panel-active{
+                border: 1px solid rgba(255, 255, 255, 0.4);
+                border-left: 0;
+                background: rgba(255, 255, 255, 0.10);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
             }
             .g-panel-img{
                 // background: $mainWhite;
@@ -111,10 +190,26 @@
 @media only screen and (max-width: 1024px){
     .g-all-container{
         ::v-deep .v-navigation-drawer{
+            background: rgba(0, 0, 0, 0.30);
+            backdrop-filter: blur(10px);
             height: calc(100% - 50px) !important;
         }
         .g-gallery-main{
             width: 100%;
+            padding: 10px;
+            // .v-btn{
+            //     margin: unset;
+            //     top: unset !important;
+            //     bottom: unset !important;
+            //     transform: rotate(90deg);
+            // }
+            // .g-gallery-down{
+            //     left: 20px;
+            // }
+            // .g-gallery-up{
+            //     right: 20px;
+            // }
+            
         }
         .g-fixed-mobile-menu{
             display: block;

@@ -1,0 +1,24 @@
+.g-search-container{
+    position: relative;
+    width: 100%;
+    height: calc(100% - 60px);
+    top: 60px;
+    ::v-deep .g-text-field{
+        margin-top: 15vh;
+        max-width: 400px;
+        margin: auto;
+        &.v-text-field--solo > .v-input__control > .v-input__slot {
+            background: rgba(0,0,0,0.5);
+            color: white;
+            .v-label{
+                color: rgba(255, 255, 255, 0.3);
+            }
+        }
+    }
+}
+@media only screen and (max-width: 1024px){
+    .g-search-container{
+        height: calc(100% - 50px);
+        top: 50px;
+    }
+}
