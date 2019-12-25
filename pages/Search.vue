@@ -1,12 +1,13 @@
 <template>
   <div class="g-search-container">
-    <v-text-field
+    <!-- <v-text-field
       name="name"
       label="Search art genre, medium, title or tags"
       single-line
-      class="g-text-field"  
-      solo
-    ></v-text-field>
+      class="g-text-field"
+      color="#fbd712"
+    ></v-text-field> -->
+    search  <br /> coming soon
   </div>
 </template>
 

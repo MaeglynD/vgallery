@@ -3,15 +3,34 @@
     width: 100%;
     height: calc(100% - 60px);
     top: 60px;
+    // temp
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    letter-spacing: 10px;
+    font-weight: 200;
+    text-transform: uppercase;
+    line-height: 2;
+    text-align: center;
     ::v-deep .g-text-field{
         margin-top: 15vh;
         max-width: 400px;
         margin: auto;
-        &.v-text-field--solo > .v-input__control > .v-input__slot {
-            background: rgba(0,0,0,0.5);
-            color: white;
-            .v-label{
-                color: rgba(255, 255, 255, 0.3);
+        &.v-input{
+            input{
+                border-radius: 3px;
+                background: rgba(0,0,0,0.4);
+                padding: 10px;
+            }
+            .v-input__slot{
+                .v-label{
+                    padding: 10px;
+                }
+                &:before, &:hover &:before{
+                    border: 0px !important;
+                }
+
             }
         }
     }

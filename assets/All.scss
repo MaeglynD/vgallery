@@ -216,3 +216,14 @@
         }    
     }
 }
+@media only screen and (max-width: 700px){
+    .g-all-container{
+        .g-gallery-main{
+            .v-responsive{
+                .g-active-img-text{
+                    display: none;
+                }
+            }
+        }
+    }
+}
