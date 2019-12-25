@@ -21,7 +21,7 @@
     <div class="g-gallery-main">
       <v-btn icon class="g-gallery-up" :disabled="art.indexOf(activeImg) === 0" @click="changeActiveImg(-1)"><v-icon>mdi-chevron-up</v-icon></v-btn>
       <v-btn icon class="g-gallery-down" :disabled="art.indexOf(activeImg) === art.length - 1" @click="changeActiveImg(1)"><v-icon>mdi-chevron-down</v-icon></v-btn>
-      <v-responsive :aspect-ratio="16/9" max-height="100%" style="background: 'red'">
+      <v-responsive :aspect-ratio="16/9" max-height="100%">
         <!-- <transition name="component-fade"> -->
           <img :src="activeImg.src" alt="" :key="activeImg.src">
           <!-- Seems like an anti-pattern when positions are just css properties, but the keys in :style arent reactive (i think) -->
@@ -72,6 +72,10 @@ export default {
   created(){
     this.activeImg = this.art[0];
 
+    
+  },
+  mounted(){
+    // the following code, if put in created, doesnt work for production build, idk why
     const queryId = this.$nuxt.$route.query.id
 
     if(queryId){
